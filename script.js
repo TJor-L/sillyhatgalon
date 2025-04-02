@@ -23,7 +23,6 @@ document.getElementById('submitComment').addEventListener('click', function () {
     const comment = new Comment()
     comment.set('comment', commentText)
     comment.set('like', 0)
-    comment.set('path', window.location.pathname)
     comment.save().then(function (savedComment) {
         console.log('Comment saved successfully', savedComment)
         document.getElementById('commentInput').value = ''
@@ -36,7 +35,6 @@ document.getElementById('submitComment').addEventListener('click', function () {
 
 function loadComments () {
     const query = new AV.Query('Comments')
-    query.equalTo('path', window.location.pathname)
     query.find().then(function (results) {
 
         results.sort(function (a, b) {
